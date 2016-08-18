@@ -16,13 +16,16 @@ namespace ClockWithEvents
         //Normally class level members should be private.  Events are public if we want external classes to handle them.
         public event TimeChangedDelegate SecondsChanged;
         public event TimeChangedDelegate MinutesChanged;
-
+        public event TimeChangedDelegate HoursChanged;
+        public event TimeChangedDelegate DaysChanged;
         public class AnInternalClass
         {
             public int MyProperty { get; set; }
         }
 
         private const int MILLISECONDS_IN_MINUTE = 10000;
+        private const int MILLISECONDS_IN_HOUR = 30000;
+        private const int MILLISECONDS_IN_DAY = 90000;
         public AnInternalClass anInternalClassInstance;
 
         int milliseconds;
@@ -45,11 +48,35 @@ namespace ClockWithEvents
                 {
                     OnMinuteChanged();
                 }
+                if(milliseconds % MILLISECONDS_IN_HOUR == 0)
+                {
+                    OnHourChanged();
+                }
+                if(milliseconds % MILLISECONDS_IN_DAY == 0)
+                {
+                    OnDayChanged();
+                }
 
                 //The Clock is no longer aware of the console.  It notifies calling code of changes through events
                 //rather than writing or printing changes itself.
                 //Console.WriteLine(seconds);
             }            
+        }
+
+        private void OnDayChanged()
+        {
+            if(DaysChanged != null)
+            {
+                //We don't want any action for the DayChange
+            }
+        }
+
+        private void OnHourChanged()
+        {
+            if(HoursChanged != null)
+            {
+                HoursChanged.Invoke(milliseconds / MILLISECONDS_IN_HOUR);
+            }
         }
 
         private void OnMinuteChanged()

@@ -38,13 +38,13 @@ namespace ConsoleClock
 
         private void MinutesChangedHandler(int minutes)
         {
-            Console.WriteLine(minutes.ToString());
+            Console.WriteLine($"  :  : {minutes.ToString()}:  :   ");
         }
 
 
         void SecondsChangedHandler(int seconds)
         {
-            Console.WriteLine(seconds.ToString());
+            Console.WriteLine($"  :  :  : {seconds.ToString()}:   ");
         }
         
 
