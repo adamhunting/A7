@@ -14,6 +14,7 @@ namespace ClockWithEvents
         //This line declares a variable of a particular type; a custom delegate we created above.  
         //It is similar to the "public ... anInternalClassInstance" line below
         //Normally class level members should be private.  Events are public if we want external classes to handle them.
+        public event TimeChangedDelegate MillisecondChanged;
         public event TimeChangedDelegate SecondsChanged;
         public event TimeChangedDelegate MinutesChanged;
         public event TimeChangedDelegate HoursChanged;
@@ -40,6 +41,10 @@ namespace ClockWithEvents
                 milliseconds++;
                 //Sleeping for 1 millisecond is a little silly and inefficient, but it will help keep our math easy to follow
                 System.Threading.Thread.Sleep(1);
+                if (milliseconds % 1 == 0)
+                {
+                    OnMillisecondChanged();
+                }
                 if (milliseconds % 1000 == 0)
                 {
                     OnSecondsChanged();
@@ -93,6 +98,14 @@ namespace ClockWithEvents
             {
                 //this line is incorrect.  Fix it! :)
                 SecondsChanged.Invoke(milliseconds / 1000);
+            }
+        }
+
+        private void OnMillisecondChanged()
+        {
+            if (MillisecondChanged != null)
+            {
+                MillisecondChanged.Invoke(milliseconds);
             }
         }
     }
