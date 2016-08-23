@@ -99,5 +99,25 @@ namespace WPFClock
         {
             ticker.MillisecondChanged -= Ticker_MillisecondsChangedOnDifferentThread;
         }
+
+        private void MinuteChecked(object sender, RoutedEventArgs e)
+        {
+            ticker.MinutesChanged += Ticker_MinuteChangedOnDifferentThread;
+        }
+
+        private void Ticker_MinuteChangedOnDifferentThread(int currentTime)
+        {
+            Minute_Label.Dispatcher.BeginInvoke(new Action<int>(Ticker_MinuteChangedUIThread), currentTime);
+        }
+
+        private void Ticker_MinuteChangedUIThread(int currentTime)
+        {
+            Minute_Label.Content = currentTime % 10;
+        }
+
+        private void MinuteUnchecked(object sender, RoutedEventArgs e)
+        {
+            ticker.MinutesChanged -= Ticker_MinuteChangedOnDifferentThread;
+        }
     }
 }

@@ -16,14 +16,14 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Label x:Name="Second_Label" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="19,120,10,142" Grid.Column="3">Text</Label>
-        <Label x:Name="Mill_Label" Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="18,120,10,142">Text</Label>
-        <Label x:Name="Minute_Label" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="10,120,18,142">Text</Label>
-        <Label x:Name="Hour_Label" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="19,120,10,142">Text</Label>
-        <Label x:Name="Day_Label" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="18,120,13,142">Text</Label>
+        <Label x:Name="Second_Label" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="19,120,10,142" Grid.Column="3"></Label>
+        <Label x:Name="Mill_Label" Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="18,120,10,142"></Label>
+        <Label x:Name="Minute_Label" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="10,120,18,142"></Label>
+        <Label x:Name="Hour_Label" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="19,120,10,142"></Label>
+        <Label x:Name="Day_Label" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="18,120,13,142"></Label>
         <CheckBox x:Name="Day_checkBox" Content="Show Day"  HorizontalAlignment="Left" Margin="18,193,0,0" VerticalAlignment="Top" IsChecked="True"/>
         <CheckBox x:Name="Hour_checkBox" Content="Show Hour"  HorizontalAlignment="Left" Margin="19,193,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Column="1"/>
-        <CheckBox x:Name="Minute_checkBox" Content="Show Minute"  HorizontalAlignment="Left" Margin="10,193,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Column="2"/>
+        <CheckBox x:Name="Minute_checkBox" Content="Show Minute"  HorizontalAlignment="Left" Margin="10,193,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Column="2" Checked="MinuteChecked" Unchecked="MinuteUnchecked"/>
         <CheckBox x:Name="Second_checkBox" Content="Show Second"  HorizontalAlignment="Left" Margin="10,193,0,0" VerticalAlignment="Top" IsChecked="True" RenderTransformOrigin="4.077,1.097" Grid.Column="3" Checked="Secondchecked" Unchecked="SecondUnchecked"/>
         <CheckBox x:Name="Mil_checkBox" Content="Show Mill"  HorizontalAlignment="Left" Margin="18,193,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Column="4" Checked="Milchecked" Unchecked="MilUnchecked"/>
     </Grid>

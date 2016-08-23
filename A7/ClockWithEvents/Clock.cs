@@ -72,7 +72,12 @@ namespace ClockWithEvents
         {
             if(DaysChanged != null)
             {
-                //We don't want any action for the DayChange
+                //We don't want any action for the DayChange for Console
+                
+                if(DaysChanged != null)
+                {
+                    DaysChanged.Invoke(milliseconds / MILLISECONDS_IN_DAY);
+                }
             }
         }
 
