@@ -112,12 +112,52 @@ namespace WPFClock
 
         private void Ticker_MinuteChangedUIThread(int currentTime)
         {
-            Minute_Label.Content = currentTime % 10;
+            Minute_Label.Content = currentTime % 3;
         }
 
         private void MinuteUnchecked(object sender, RoutedEventArgs e)
         {
             ticker.MinutesChanged -= Ticker_MinuteChangedOnDifferentThread;
+        }
+
+        private void HourChecked(object sender, RoutedEventArgs e)
+        {
+            ticker.HoursChanged += Ticker_HourChangedOnDifferentThread;
+        }
+
+        private void Ticker_HourChangedOnDifferentThread(int currentTime)
+        {
+            Hour_Label.Dispatcher.BeginInvoke(new Action<int>(Ticker_HourChangedUIThread), currentTime);
+        }
+
+        private void Ticker_HourChangedUIThread(int currentTime)
+        {
+            Hour_Label.Content = currentTime % 3;
+        }
+
+        private void HoursUnchecked(object sender, RoutedEventArgs e)
+        {
+            ticker.HoursChanged -= Ticker_HourChangedOnDifferentThread;
+        }
+
+        private void DayChecked(object sender, RoutedEventArgs e)
+        {
+            ticker.DaysChanged += Ticker_DayChangedOnDifferentThread;
+        }
+
+        private void Ticker_DayChangedOnDifferentThread(int currentTime)
+        {
+            Day_Label.Dispatcher.BeginInvoke(new Action<int>(Ticker_DayChangedUIThread), currentTime);
+        }
+
+        private void Ticker_DayChangedUIThread(int currentTime)
+        {
+            Day_Label.Content = currentTime;
+        }
+
+        private void DayUnchecked(object sender, RoutedEventArgs e)
+        {
+            ticker.DaysChanged -= Ticker_DayChangedOnDifferentThread;
         }
     }
 }

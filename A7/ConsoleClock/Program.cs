@@ -29,6 +29,7 @@ namespace ConsoleClock
             ticker.MinutesChanged += MinutesChangedHandler;
             ticker.HoursChanged += HoursChangedHandler;
             ticker.MillisecondChanged += MillisecondChangedHandler;
+            //ticker.DaysChanged += DayChangedHandler;
             ticker.Start();
         }
 
@@ -36,6 +37,11 @@ namespace ConsoleClock
         {
             ticker = new Clock();            
         }
+
+        //private void DayChangedHandler(int days)
+        //{
+        //    //NOthing here
+        //}
 
         private void HoursChangedHandler(int hours)
         {
