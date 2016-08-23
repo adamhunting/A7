@@ -49,7 +49,6 @@ namespace ConsoleClock
             var min = minutes % 3;
             Console.CursorLeft = 3;
             Console.Write($":{min.ToString("D2")}");
-            //Console.CursorLeft -= 2;
         }
 
         void SecondsChangedHandler(int seconds)
@@ -57,7 +56,6 @@ namespace ConsoleClock
             var sec = seconds % 10;
             Console.CursorLeft = 6;
             Console.Write($":{sec.ToString("D2")}");
-            //Console.CursorLeft = 6;
         }
 
         void MillisecondChangedHandler(int milli)
@@ -65,7 +63,6 @@ namespace ConsoleClock
             var mill = milli % 1000;
             Console.CursorLeft = 9;
             Console.Write($":{mill.ToString("D3")}");
-            //Console.CursorLeft -= 3;
         }
 
 

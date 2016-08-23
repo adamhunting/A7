@@ -28,19 +28,14 @@ namespace WPFClock
 
         public MainWindow()
         {
-            
-            InitializeComponent();
-
             ticker = new Clock();
-
+            InitializeComponent();
             /*
              * We could also use the Action type instead of NoArg and save some code.  
              * But then we'd need to understand Generics...
              * so I'll stick with NoArg for now.
             */
             NoArg start = ticker.Start;
-
-
             /*
              *  .NET prevents us from updating UI elements from another thread.
              *  Our clock uses Thread.Sleep which would make our app look like it crashed.
@@ -52,18 +47,18 @@ namespace WPFClock
              *  All the Dispatch/BeginInvoke magic happens here in the client code.
              * 
              */
-            ticker.SecondsChanged += Ticker_SecondsChangedOnDifferentThread;
+           
             start.BeginInvoke(null, null);
             
         }
 
         
-        private void Ticker_TimeChangedUIThread(int currentTime)
+        private void Ticker_SecondTimeChangedUIThread(int currentTime)
         {
             /*
              * This method is executed by the UI thread, and so can modify the label directly.
              */
-            SecondsLabel.Content = currentTime;        
+            Second_Label.Content = currentTime % 10;        
         }
 
         private void Ticker_SecondsChangedOnDifferentThread(int currentTime)
@@ -72,8 +67,37 @@ namespace WPFClock
              * Here's where the Clock's thread will put a message on the UI thread's queue of work,
              * again, through the use of a delegate
              */
-            SecondsLabel.Dispatcher.BeginInvoke(new Action<int>(Ticker_TimeChangedUIThread), currentTime);
+            Second_Label.Dispatcher.BeginInvoke(new Action<int>(Ticker_SecondTimeChangedUIThread), currentTime);
         }
 
+        private void Secondchecked(object sender, RoutedEventArgs e)
+        {
+            ticker.SecondsChanged += Ticker_SecondsChangedOnDifferentThread;
+        }
+
+        private void SecondUnchecked(object sender, RoutedEventArgs e)
+        {
+            ticker.SecondsChanged -= Ticker_SecondsChangedOnDifferentThread;
+        }
+
+        private void Milchecked(object sender, RoutedEventArgs e)
+        {
+            ticker.MillisecondChanged += Ticker_MillisecondsChangedOnDifferentThread;
+        }
+
+        private void Ticker_MillisecondsChangedOnDifferentThread(int currentTime)
+        {
+            Mill_Label.Dispatcher.BeginInvoke(new Action<int>(Ticker_MillisecondsChangedUIThread), currentTime);
+        }
+
+        private void Ticker_MillisecondsChangedUIThread(int currentTime)
+        {
+            Mill_Label.Content = currentTime % 1000;
+        }
+
+        private void MilUnchecked(object sender, RoutedEventArgs e)
+        {
+            ticker.MillisecondChanged -= Ticker_MillisecondsChangedOnDifferentThread;
+        }
     }
 }

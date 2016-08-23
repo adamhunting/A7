@@ -96,7 +96,6 @@ namespace ClockWithEvents
         {
             if (SecondsChanged != null)
             {
-                //this line is incorrect.  Fix it! :)
                 SecondsChanged.Invoke(milliseconds / 1000);
             }
         }
