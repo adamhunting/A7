@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPFClock"
         mc:Ignorable="d"
         Title="StopWatch2000" Height="350" Width="525" Background="LightBlue">
-       
+
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -16,8 +16,50 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Label x:Name="Second_Label" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="19,120,10,142" Grid.Column="3" FontStretch="UltraExpanded">0</Label>
-        <Label x:Name="Mill_Label" Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="18,120,10,142">0</Label>
+        <Label x:Name="Second_Label" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="32" Margin="43,122,25,127" Grid.Column="3" FontStretch="UltraExpanded" Height="71" Width="36">0
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="FontSize" To="42" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.800" Storyboard.TargetProperty="FontSize" To="36" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+
+        <Label x:Name="Mill_Label" Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="18,120,10,142">0
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard TargetProperty="Opacity">
+                                        <DoubleAnimation  Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:5" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
         <Label x:Name="Minute_Label" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="10,120,18,142">0</Label>
         <Label x:Name="Hour_Label" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="19,120,10,142">0</Label>
         <Label x:Name="Day_Label" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="18,120,13,142">0</Label>
